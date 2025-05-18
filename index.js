@@ -7,6 +7,14 @@ const expressHandlebars = require('express-handlebars');
 const {createStarList} = require('./controller/handlebarsHelper');
 const {createPagination} = require('express-handlebars-paginate');
 const session = require('express-session');
+const redisStore = require('connect-redis').default;
+const { createClient } = require('redis');
+const redisClient = createClient({
+    url: 'redis://red-d0klkbruibrs739kpdn0:6379'
+});
+
+redisClient.connect().catch(console.error);
+
 
 // cau hinh public static folder
 app.use(express.static(__dirname +'/public'));
@@ -34,6 +42,9 @@ app.use(express.urlencoded({extended: false}));
 // Cau hinh su dung session
 app.use(session({
     secret: 'S3cret',
+    store: new redisStore({
+        client: redisClient
+    }),
     resave: false,
     saveUninitialized: false,
     cookie: {
