@@ -1,12 +1,17 @@
 {
    
   "development": {
-   "use_env_variable": "POSTGRESQL_URL"
+  
+    "username": "postgres",
+    "password": "01636489147b",
+    "database": "eshopDB_1",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "postgres",
-    "database": "eshopDB",
+    "password": "01636489147b",
+    "database": "eshopDB_1",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
